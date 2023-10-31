@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>WDPAI</title>
-    <link rel="stylesheet" type="text/css" href="app/css/style.css">
+    <link rel="stylesheet" type="text/css" href="app/css/styleBackground.css">
 </head>
 
 <body>
