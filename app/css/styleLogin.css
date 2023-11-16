@@ -3,7 +3,6 @@
     height: 100vh;
     background-image: url("../img/login_background.jpg");
     background-size: cover;
-    background-position: bottom;
 
     display: flex;
     flex-direction: column;
@@ -20,8 +19,6 @@
 
 .login_container {
     height: 100vh; /* Ustawienie wysokości na pełną wysokość widoku */
-   
-    
 }
 
 .login_container form {
@@ -29,6 +26,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center; 
+    
 }
 
 .login_container input {
@@ -67,6 +65,8 @@
     font-weight: 400;
     line-height: normal;
     letter-spacing: 8.1px;
+    overflow: hidden; /* Zapobiega wychodzeniu tekstu poza granice przycisku */
+    white-space: nowrap; /* Zapobiega łamaniu tekstu na wiele linii */    
 }
 
 
@@ -83,4 +83,41 @@
 
 body{
     margin: 0;
+}
+
+@media only screen and (max-device-width:420px){
+    
+    .container{
+        background-size: cover;
+        background-position: center;
+    }
+    
+    .login_container button {
+        margin: 10px 0; /* Ustawienie marginesu górnego i dolnego dla elementów input */
+        width: 70vw;
+        height: 10vh;
+        font-size: 47px;
+    }
+
+    .login_container input {
+        margin: 10px 0; /* Ustawienie marginesu górnego i dolnego dla elementów input */
+        width: 70vw;
+        height: 10vh;
+        font-size: 47px;
+    }
+
+    .logo{
+        align-self:center;
+        margin-top: 10%;
+        margin-right: 20%;
+    }
+
+    #logoImg{
+        width: 220%;
+        height: auto;
+    }
+
+    .login_container form {
+        margin-top: 10%;
+    }
 }
