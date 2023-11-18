@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient( rgb(10, 8, 8), rgb(28, 28, 36),  rgb(10, 8, 8));
+    ;
+}
+
+.container {
+    flex-direction: column;
+}
+
+.menu {
+    display: flex; /* Dodano display: flex */
+    flex-direction: row;
+}
+
+.menu button {
+    flex: 1; /* Zmieniono width na flex, aby elastycznie zajmować dostępną przestrzeń */
+    height: 12vh;
+    display: flex; /* Ustawienie przycisku na flex container */
+    align-items: center; /* Wyśrodkowanie elementów w pionie */
+
+    border-bottom: 2px solid #6A6A6A;
+    border-left: 1px solid #6A6A6A;
+    border-right: 1px solid #6A6A6A;
+    background: #1E1E1E;
+    font-size: 30;
+    color: white;
+    letter-spacing: 8.1px;
+}
+
+.menu button img{
+    width: heigth 80%;
+    margin-right: 5vh;
+    margin-left: 10vh;
+}
+
+.menu button:active{
+    background-color:rgb(17, 17, 20);
+    border-top: 2px  rgb(73, 68, 68);
+    border-bottom: 0;
+    border-left: 1px solid #6A6A6A;
+    border-right: 1px solid #6A6A6A;
+    box-shadow: 0px 4px 4px 0px rgba(255, 255, 255, 0.25) inset;
+}
