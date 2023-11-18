@@ -1,18 +1,12 @@
 <!DOCTYPE html>
-<html>
 <head>
-    <title>WDPAI</title>
-    <link rel="stylesheet" type="text/css" href="app/css/styleBackground.css">
+    <title>Strona z PHP</title>
 </head>
 
 <body>
-    <div class="container">
-        <div class="logo">
-            <img src="app/img/logo.svg" >
-        </div>
-    </div>
-
- 
+    <?php include 'app/views/menu.html'; ?>
     
+    <!-- Dodaj treść strony tutaj -->
+    <p>Witaj na mojej stronie!</p>
 </body>
 </html>
