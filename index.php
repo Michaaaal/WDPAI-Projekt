@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <head>
-    <title>Strona z PHP</title>
-    <link rel="stylesheet" type="text/css" href="app/css/background.css">
+    <title>Capturly</title>
+    <link rel="icon" href="app/img/logo.svg" type="image/x-icon">
 </head>
 
 <body>
-    <?php include 'app/views/menu.html'; ?>
+    <?php
+    require 'Routing.php';
     
-    <!-- Dodaj treść strony tutaj -->
-    <?php include 'app/views/acc.html'; ?>
+    $path = trim($_SERVER['REQUEST_URI'],'/');
+    $path = parse_url($path, PHP_URL_PATH);
+    
+    Routing::get('login','DefaultController');
+    Routing::get('register','DefaultController');
+    Routing::get('evaluate','DefaultController');
+    Routing::get('acc','DefaultController');
+    Routing::get('leaderboard','DefaultController');
+    Routing::run($path);
+
+   // include 'app/views/menu.html'; 
+   // include 'app/views/acc.html';
+
+    ?>
    
     
 </body>
