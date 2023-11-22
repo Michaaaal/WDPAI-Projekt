@@ -1,7 +1,7 @@
 .container{
     width: 100vw;
     height: 100vh;
-    background-image: url("../img/login_background.jpg");
+    background-image: url("app/img/login_background.jpg");
 
     background-size: cover;
     background-position: center;

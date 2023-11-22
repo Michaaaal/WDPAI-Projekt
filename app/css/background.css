@@ -1,0 +1,10 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient( rgb(10, 8, 8), rgb(28, 28, 36),  rgb(10, 8, 8));
+
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
