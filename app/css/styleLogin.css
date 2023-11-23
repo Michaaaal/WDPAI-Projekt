@@ -86,6 +86,18 @@ body{
     margin: 0;
 }
 
+.messages{
+    /*
+    width: 25vw;
+    height: 10vh;
+    background: rgba(217, 217, 217, 0.65);
+    border-radius: 20px;*/
+
+    color: white;
+    margin-bottom: 6vh;
+    font-size: 30px;
+}
+
 @media only screen and (max-device-width:420px){
     
     .container{

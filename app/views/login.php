@@ -11,12 +11,25 @@
             <img id="logoImg" src="app/img/logo.svg">
         </div>
 
+
+
         <div class="login_container"> 
-            <form>
+            <form class="login" action="login" method="POST">
+
+                <div class='messages'>
+                    <?php
+                    if(isset($messeges)){
+                        foreach ($messeges as $message){
+                            echo $message;
+                        }
+                    }
+                    ?>
+                </div>
+
                 <input name="email" type="text" placeholder="email">
                 <input name="password" type="password" placeholder="password">
-                <button id="button1"> CONTINUE </button>
-                <button id="button2"> SIGN IN </button>
+                <button id="button1" type="submit"> CONTINUE </button>
+                <button id="button2"> REGISTER </button>
             </form>    
         </div>
 
