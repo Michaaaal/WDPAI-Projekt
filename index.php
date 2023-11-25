@@ -21,6 +21,7 @@
     Routing::get('leaderboard','DefaultController');
     Routing::get('topic','DefaultController');
     Routing::post('login','SecurityController');
+    Routing::post('addCP','CompetitionController');
     Routing::run($path);
 
     ?>

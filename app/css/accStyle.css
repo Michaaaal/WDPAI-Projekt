@@ -1,0 +1,24 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.addCompetitionPhoto {
+    width: 59vw;
+    flex: 1;
+    flex-direction: column;
+}
+
+.accountCont {
+    width: 39vw;
+    flex: 1;
+    flex-direction: column;
+}
+
+.uploadedIMG {
+    width: 60%;
+    max-width: 100%; /* Zapewnia, że obraz nie będzie większy niż jego oryginalny rozmiar */
+    height: auto; /* Zachowuje proporcje oryginalnego obrazu */
+}
+

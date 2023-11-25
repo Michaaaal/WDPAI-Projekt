@@ -2,6 +2,7 @@
 
 require_once('app/php/controllers/DefaultController.php');
 require_once('app/php/controllers/SecurityController.php');
+require_once('app/php/controllers/CompetitionController.php');
 
 
 

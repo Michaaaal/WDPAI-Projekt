@@ -2,7 +2,6 @@
 <head>
     <title> Leaderboard </title>
     <link rel="stylesheet" type="text/css" href="app/css/background.css">
-    <link rel="stylesheet" type="text/css" href="app/css/mainStyle.css">
 </head>
 
 <body>
