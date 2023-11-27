@@ -1,5 +1,3 @@
-
-
 .menuContainer {
     flex-direction: column;
     margin: 0;
@@ -31,7 +29,6 @@
 }
 
 .menu button img{
-    width: heigth 80%;
     margin-right: 5vh;
     margin-left: 10vh;
 }

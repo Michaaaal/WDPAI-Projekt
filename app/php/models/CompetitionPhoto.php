@@ -16,7 +16,7 @@ class CompetitionPhoto
 
     public function getDescription() : string
     {
-        return $this->description !== null ? $this->description : 'AAA';
+        return $this->description;
     }
 
     public function getImage() : string

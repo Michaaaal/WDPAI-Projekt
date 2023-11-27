@@ -1,24 +1,159 @@
+body {
+    overflow-x: hidden; /* Ukryj pasek przewijania poziomego */
+    scroll-snap-type: y mandatory; /* Opcjonalnie: ustaw właściwość przewijania */
+    overscroll-behavior-x: none; /* Opcjonalnie: ustaw właściwość przewijania */
+}
+
 .container {
     width: 100%;
+
     display: flex;
     flex-direction: row;
+    font-family: 'Inter', sans-serif; /* Przykładowa czcionka bez ogonków */
+
 }
 
 .addCompetitionPhoto {
-    width: 59vw;
+    width: 59vh;
     flex: 1;
     flex-direction: column;
 }
 
-.accountCont {
-    width: 39vw;
-    flex: 1;
-    flex-direction: column;
+
+
+.header1{
+    text-align: center;
+    font-size: 25px;
+    color: white;
+    letter-spacing: 8.1px;
+    margin-top: 5%;
+}
+
+.divider{
+    width: 0.1vw;
+    max-height: 100%;
+    overflow: auto;
+    background-color: #6A6A6A;
+}
+
+
+.fileInput {
+    display: none;
+    border: none;
+    outline: none; /* Hide the default file input */
+}
+
+.addPhoto{
+    width: 85%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Style a custom button to trigger file input */
+.customButton {
+    margin-left: 7%;
+    padding: 0;
+}
+
+.navigation-bar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100px; /* Dostosuj szerokość paska nawigacyjnego według potrzeb */
+    height: 100%; /* Ustaw wysokość na 100%, aby zajmował całą dostępną wysokość */
+    background-color: #333; /* Dodaj kolor tła paska nawigacyjnego */
+    /* Dodaj inne stylizacje według potrzeb */
+}
+
+.description{
+    width: 100%;
+    background-color: #2a292e;
+    border: 2px solid #6A6A6A;
+    color:white;
+    font-size: 20px;
+}
+
+.descriptionCont{
+    margin-left: 11.5%;
+    width: 60%;
+}
+
+#submitButton{
+    margin-top: 4%;
+    margin-bottom: 4%;
+    margin-left: 11.5%;
+    background-color: green;
+    color: #a6a6a6;
+    width: 20%;
+    height: 5vh;
+    font-size: 20px;
+    letter-spacing: 8.1px;
+
+}
+
+#messages1{
+    margin-left: 11.5%;
 }
 
 .uploadedIMG {
-    width: 60%;
-    max-width: 100%; /* Zapewnia, że obraz nie będzie większy niż jego oryginalny rozmiar */
+    margin-left: 11.5%;
+    width: 75%;
     height: auto; /* Zachowuje proporcje oryginalnego obrazu */
+    margin-top: 5%;
 }
 
+.uploadedDesc{
+    margin-left: 11.5%;
+    margin-top: 4%;
+    font-size: 20px;
+    padding-bottom: 5%;
+}
+
+.accountCont {
+    width: 39vh;
+    flex: 1;
+    flex-direction: column;
+}
+
+.accountCont input {
+    margin: 2% 0; /* Ustawienie marginesu górnego i dolnego dla elementów input */
+
+    width: 35vw;
+    height: 7.5vh;
+    border-radius: 20px;
+    border: 1px solid #000;
+    background: rgba(217, 217, 217, 0.85);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    font-family: Inter ,sans-serif;
+    font-size: 27px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 3.1px;
+}
+
+#button1{
+    width: 50%;
+    height: 6vh;
+    margin-left: 17%;
+    margin-top: 6%;
+    margin-bottom: 6.5%;
+
+
+    background-color: green;
+    color: #a6a6a6;
+    font-size: 20px;
+    letter-spacing: 8.1px;
+}
+
+.inputCont{
+    margin-top: 4.6%;
+    margin-left: 13%;
+}
+
+#changeDesc{
+    height: 18vh;
+}

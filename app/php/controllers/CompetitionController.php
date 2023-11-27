@@ -25,7 +25,8 @@ class CompetitionController extends AppController{
             return $this->render('acc',["messages" => $this->messages, 'competitionPhoto'=> $competitionPhoto]);
         }
 
-        $this->render("addCP",["messages" => $this->messages]);
+        $this->messages[] = 'No file attached!';
+        $this->render("acc",["messages" => $this->messages]);
     }
 
     private function validate(array $file):bool {
