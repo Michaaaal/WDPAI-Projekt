@@ -1,5 +1,4 @@
 <?php
-
 use models\User;
 require_once __DIR__.'/../models/User.php';
 require_once 'Repository.php';
@@ -18,9 +17,14 @@ class UserRepository extends Repository
         }
 
         return new User(
+            $user['id_user'],
             $user['email'],
             $user['password_hash'],
             $user['nickname']
         );
+    }
+
+    public function addUser(string $email, string $password, string $repeatedPassword){
+
     }
 }

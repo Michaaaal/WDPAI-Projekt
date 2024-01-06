@@ -11,6 +11,7 @@ body {
     border-left: 1px solid #6A6A6A;
     border-right: 1px solid #6A6A6A;
     box-sizing: border-box;
+    background-attachment: fixed;
 
     color: white;
 }

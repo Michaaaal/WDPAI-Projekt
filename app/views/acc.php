@@ -1,3 +1,4 @@
+<?php require_once 'app/php/controllers/CompetitionController.php'; ?>
 <!DOCTYPE html>
 <head>
     <title> Post/Account </title>
@@ -58,6 +59,8 @@
                         echo 'No-Photo.jpg';
                     }
                     ?>">
+
+                    <?php displayCompetitionImage(); ?>
                 </div>
 
                 <div class="uploadedDesc">

@@ -80,6 +80,8 @@
 #button2 {
     padding: 10px;
     background-color: #231b94ee; /* Ustawienie koloru tła przycisku */
+
+    align-content: center;
 }
 
 body{

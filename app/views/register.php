@@ -15,8 +15,8 @@
                 <input name="email" type="text" placeholder="email">
                 <input name="password" type="password" placeholder="password">
                 <input name="password" type="password" placeholder="repeat password">
-                <button id="button1" background="red"> REGISTER </button>
-            </form>    
+                <button id="button1" background="red" > REGISTER </button>
+            </form>
         </div>
 
     </div>
