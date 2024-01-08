@@ -1,0 +1,39 @@
+.topicContainer {
+    width: 100%;
+    height: 6.5vh;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* Dodane, aby elementy były na krańcach kontenera */
+    font-size: 4vh;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.1vh;
+    background-color: #171616;
+}
+
+.logout {
+    margin-top: 1vh;
+    margin-right: 10vw;
+}
+
+.topicName {
+    margin-top: 1vh;
+    margin-right: auto; /* Umieszczenie na lewej stronie */
+}
+
+.rainbow {
+    background: linear-gradient(45deg, #ff0000, #ff8000, #ffff00, #00ff00, #0000ff, #8000ff, #ff00ff);
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-top: 1vh;
+    margin-left: 10vw;
+    -webkit-text-stroke: 1px white;
+}
+
+.logout input {
+    background-color: #444444;
+    color: white;
+    height: 4vh;
+    width: 10vw;
+    font-size: 3vh;
+}

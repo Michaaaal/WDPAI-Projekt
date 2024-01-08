@@ -26,4 +26,25 @@ class TopicRepository extends \Repository
 
     }
 
+    public function getTopicById(int $id): ?Topic
+    {
+        $stmt = $this->database->connect()->prepare("SELECT * FROM topics WHERE id_topic=:id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+
+        $topic = $stmt -> fetch(PDO::FETCH_ASSOC);
+        if($topic == false){
+            return null;
+        }
+
+        return new Topic(
+            $topic["id_topic"],
+            $topic["topic"],
+            $topic["start_date"],
+            $topic["end_date"],
+            $topic["actual"]
+        );
+
+    }
+
 }

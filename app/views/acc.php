@@ -1,4 +1,3 @@
-<?php require_once 'app/php/controllers/CompetitionController.php'; ?>
 <!DOCTYPE html>
 <head>
     <title> Post/Account </title>
@@ -7,23 +6,16 @@
 </head>
 
 <body>
+    <?php include 'app/views/topic.php' ?>
     <?php include 'app/views/menu.php' ?>
-    
+
     <div class="container">
-
-
 
             <div class="addCompetitionPhoto">
             <div class="header1">POST</div>
 
                 <form action="addCP" method="POST" ENCTYPE="multipart/form-data">
-                    <?php
-                    if(isset($messeges)){
-                        foreach ($messeges as $message){
-                            echo $message;
-                        }
-                    }
-                    ?>
+
 
                     <div>
                         <label for="fileInput" class="customButton"><img class="addPhoto" src="app/img/addPhoto.svg"></label>
@@ -46,33 +38,18 @@
                 </div>
 
                 <div class="header1">
-                    UPLOADED
+                    UPLOADED ON THIS TOPIC
                 </div>
 
-                <div>
-                    <img class="uploadedIMG" src="app/iuploadsTMP/<?php if ($competitionPhoto != null) {
-                        $description = $competitionPhoto->getImage();
-                        if (!empty($description)) {
-                            echo $description;
-                        }
-                    }else{
-                        echo 'No-Photo.jpg';
-                    }
-                    ?>">
-
-                    <?php displayCompetitionImage(); ?>
+                <div class="uploadedImg">
+                   <?php
+                    include_once 'app/php/controllers/CompetitionController.php';
+                    $competitionController = new CompetitionController();
+                    $competitionController->displayCompetitionImagesUploaded();
+                    ?>
                 </div>
 
-                <div class="uploadedDesc">
-                    <?php if ($competitionPhoto != null) {
-                        $description = $competitionPhoto->getDescription();
-                        if (!empty($description)) {
-                            echo $description;
-                        }
-                    }else{
-                        echo 'Lack of description';
-                    } ?>
-                </div>
+
 
             </div>
 
@@ -84,16 +61,34 @@
 
             <div class="accountCont">
                 <div class="header1">ACCOUNT</div>
+                <form action="changeAcc" method="post">
                 <div class="inputCont">
-                    <input name="changeNickname" placeholder="Nickname">
-                    <input name="changeEmail"  placeholder="E-mail">
-                    <input name="phoneNumber"  placeholder="Phone Num">
-                    <input id="changeDesc" name="description"  placeholder="Account description">
-                    <button id="button1" > APPLY CHANGES </button>
+                    <?php $userRepository = new UserRepository();
+                    $user = $userRepository->getUserById($_SESSION['userId']);
+                    ?>
+                    <input name="changeNickname" placeholder="Nickname: <?php echo $user->getName()?>" autocomplete="off">
+                    <input name="changePassword" oninput="maskInput(this)" placeholder="changePassword" autocomplete="off">
+                    <input name="repeatPassword" oninput="maskInput(this)" placeholder="repeatPassword" autocomplete="off">
+                    <input name="phoneNumber"  placeholder="Phone Num: <?php echo $user->getPhoneNumber()?>" autocomplete="off">
+
+                    <?php
+                    if(isset($messeges)){
+                        foreach ($messeges as $message){
+                            echo "<p>".$message."</p>";
+                        }
+                    }
+                    ?>
+                    <button id="button1" type="submit"> APPLY CHANGES </button>
                 </div>
+                </form>
 
                 <div class="header1">GALLERY</div>
-                
+
+                <div><?php
+                    include_once 'app/php/controllers/CompetitionController.php';
+                    $competitionController = new CompetitionController();
+                    $competitionController->displayCompetitionImagesGallery();
+                    ?></div>
 
             </div>
 
@@ -101,4 +96,11 @@
     </div>
 
 
+    <script>
+        function maskInput(input) {
+            let inputValue = input.value;
+            let maskedValue = inputValue.replace(/./g, '*');
+            input.value = maskedValue;
+        }
+    </script>
 </body>

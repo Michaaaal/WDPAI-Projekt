@@ -6,16 +6,24 @@
 
 <body>
     <div class="container">
-        <div class="logo" > 
-            <img id="logoImg" src="app/img/logo.svg">
-        </div>
+        <div class="login_container">
+            <form action="registerUser" method="post" >
+                <div class='messages'>
+                    <?php
+                    if(isset($messeges)){
+                        foreach ($messeges as $message){
+                            echo $message;
+                        }
+                    }
+                    ?>
+                </div>
+                <input name="e-mail" type="text" placeholder="e-mail" autocomplete="off">
+                <input name="firstPassword" type="password" placeholder="password" autocomplete="off">
+                <input name="secondPassword" type="password" placeholder="repeat password" autocomplete="off">
+                <input name="nickname" type="text" placeholder="Nickname" autocomplete="off">
+                <input name="phone-number" type="text" placeholder="Phone number" autocomplete="off">
 
-        <div class="login_container"> 
-            <form>
-                <input name="email" type="text" placeholder="email">
-                <input name="password" type="password" placeholder="password">
-                <input name="password" type="password" placeholder="repeat password">
-                <button id="button1" background="red" > REGISTER </button>
+                <button id="button1" type="submit" > REGISTER </button>
             </form>
         </div>
 

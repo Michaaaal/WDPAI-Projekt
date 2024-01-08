@@ -16,6 +16,7 @@ class CompetitionPhoto
     private $place;
 
     /**
+     * @param $id
      * @param $topic_id
      * @param $user_id
      * @param $description
@@ -24,8 +25,9 @@ class CompetitionPhoto
      * @param $unlikes
      * @param $place
      */
-    public function __construct($topic_id, $user_id, $description, $image, $likes, $unlikes, $place)
+    public function __construct($id, $topic_id, $user_id, $description, $image, $likes, $unlikes, $place)
     {
+        $this->id = $id;
         $this->topic_id = $topic_id;
         $this->user_id = $user_id;
         $this->description = $description;
@@ -34,6 +36,17 @@ class CompetitionPhoto
         $this->unlikes = $unlikes;
         $this->place = $place;
     }
+
+    /**
+     * @param $topic_id
+     * @param $user_id
+     * @param $description
+     * @param $image
+     * @param $likes
+     * @param $unlikes
+     * @param $place
+     */
+
 
 
     public function getDescription() : string

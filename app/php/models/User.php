@@ -8,56 +8,115 @@ class User
     private $email;
     private $password;
     private $name;
+    private $phoneNumber;
 
-
-    public function __construct(int $id ,string $email, string $password, string $name)
+    /**
+     * @param $id
+     * @param $email
+     * @param $password
+     * @param $name
+     * @param $phoneNumber
+     */
+    public function __construct($email, $password, $name, $phoneNumber,$id)
     {
-        $this->id=$id;
         $this->email = $email;
         $this->password = $password;
         $this->name = $name;
-
+        $this->phoneNumber = $phoneNumber;
+        $this->id = $id;
     }
 
-    public function getId(): int
+    /**
+     * @param $id
+     * @param $email
+     * @param $password
+     * @param $name
+     * @param $phoneNumber
+     */
+
+
+    /**
+     * @return mixed
+     */
+    public function getId()
     {
         return $this->id;
     }
 
-    public function setId(int $id): void
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
     {
         $this->id = $id;
     }
 
-    public function getEmail(): string
+    /**
+     * @return mixed
+     */
+    public function getEmail()
     {
         return $this->email;
     }
 
-    public function setEmail(string $email)
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email): void
     {
         $this->email = $email;
     }
 
-    public function getPassword(): string
+    /**
+     * @return mixed
+     */
+    public function getPassword()
     {
         return $this->password;
     }
 
-    public function setPassword(string $password)
+    /**
+     * @param mixed $password
+     */
+    public function setPassword($password): void
     {
         $this->password = $password;
     }
 
-    public function getName(): string
+    /**
+     * @return mixed
+     */
+    public function getName()
     {
         return $this->name;
     }
 
-    public function setName(string $name)
+    /**
+     * @param mixed $name
+     */
+    public function setName($name): void
     {
         $this->name = $name;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getPhoneNumber()
+    {
+        return $this->phoneNumber;
+    }
+
+    /**
+     * @param mixed $phoneNumber
+     */
+    public function setPhoneNumber($phoneNumber): void
+    {
+        $this->phoneNumber = $phoneNumber;
+    }
+
+
+
 
 
 }

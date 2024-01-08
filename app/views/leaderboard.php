@@ -5,6 +5,7 @@
 </head>
 
 <body>
+    <?php include 'app/views/topic.php' ?>
     <?php include 'app/views/menu.php' ?>
     <div class="container">
         Leaderboard

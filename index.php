@@ -1,4 +1,4 @@
-<?php session_start()?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <head>
     <title>Capturly</title>
@@ -13,13 +13,19 @@
     $path = parse_url($path, PHP_URL_PATH);
 
     Routing::post('login','SecurityController');
-    Routing::get('','DefaultController');
+    Routing::post('registerUser','SecurityController');
+    Routing::post('changeAcc','SecurityController');
     Routing::get('register','DefaultController');
+    Routing::get('','DefaultController');
     Routing::get('evaluate','DefaultController');
     Routing::get('acc','DefaultController');
     Routing::get('leaderboard','DefaultController');
     Routing::get('topic','DefaultController');
     Routing::post('addCP','CompetitionController');
+    Routing::post('logout','SecurityController');
+    Routing::post('searchForEvaluation','CompetitionController');
+    Routing::post('evaluateCI','CompetitionController');
     Routing::run($path);
+
 ?>
 </body>
