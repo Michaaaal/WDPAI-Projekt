@@ -13,10 +13,7 @@ class DefaultController extends AppController{
     }
 
     public function evaluate() {
-        if (!isset($_SESSION['isLoggedIn']) || $_SESSION['isLoggedIn'] !== true) {
-            $this->render('login');
-            exit;
-        }
+        $this->checkIfLoggedIn();
         $userId = $_SESSION["userId"];
         $repo = new \repository\CompetitionPhotoRepository();
         $image = $repo->getCPbyUserNotEvaluatedSingle($userId);
@@ -25,19 +22,12 @@ class DefaultController extends AppController{
     }
 
     public function leaderboard() {
-        if (!isset($_SESSION['isLoggedIn']) || $_SESSION['isLoggedIn'] !== true) {
-            $this->render('login');
-            exit;
-        }
+        $this->checkIfLoggedIn();
         $this->render('leaderboard');
     }
 
     public function acc() {
-        session_start();
-        if (!isset($_SESSION['isLoggedIn']) || $_SESSION['isLoggedIn'] !== true) {
-            $this->render('login');
-            exit;
-        }
+        $this->checkIfLoggedIn();
         $this->render('acc');
     }
 }

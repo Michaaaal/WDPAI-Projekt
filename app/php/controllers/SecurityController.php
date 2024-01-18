@@ -10,9 +10,18 @@ require_once __DIR__.'/../repository/TopicRepository.php';
 
 class SecurityController extends AppController
 {
-    public function login(){
-        $userRepository = new UserRepository();
 
+    private $userRepository;
+    private $topicRepository;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->userRepository = new UserRepository();
+        $this->topicRepository = new TopicRepository();
+    }
+
+    public function login(){
         if(!$this->isPost()){
             return $this->render("login");
         }
@@ -20,7 +29,7 @@ class SecurityController extends AppController
         $email= $_POST["email"];
         $password = $_POST["password"];
 
-        $user =  $userRepository->getUser($email);
+        $user =  $this->userRepository->getUser($email);
 
         if(!$user){
             return $this->render("login", ['messeges' => ["User with this e-mail does not exist"]]);
@@ -32,8 +41,7 @@ class SecurityController extends AppController
             return $this->render("login", ['messeges' => ["Wrong password!"]]);
         }
 
-        $topicRepository = new TopicRepository();
-        $actualTopic = $topicRepository->getTopicByActual();
+        $actualTopic = $this->topicRepository->getTopicByActual();
 
         $_SESSION['userId'] = $user->getId();
         if($actualTopic!=null){
@@ -74,7 +82,7 @@ class SecurityController extends AppController
         if($password == $secondPassword){
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            $user = new User($email, $hashedPassword, $nickname, $phoneNumber,null);
+            $user = new User($email, $hashedPassword, $nickname, $phoneNumber,null,1);
             $userRepository->addUser($user);
             return $this->render("login", ['messeges' => ["You have registered"]]);
         }
@@ -85,6 +93,11 @@ class SecurityController extends AppController
 
 
     public function changeAcc(){
+        if (!isset($_SESSION['isLoggedIn']) || $_SESSION['isLoggedIn'] !== true) {
+            $this->render('login');
+            exit;
+        }
+
         $userRepository = new UserRepository();
         $user = $userRepository->getUserById($_SESSION['userId']);
 
@@ -117,5 +130,36 @@ class SecurityController extends AppController
 
         $userRepository->changeUser($user);
         return $this->render("acc", ['messeges' => ["User data changed!"]]);
+    }
+
+    public function admin(){
+        if($this->checkIfAdmin()){
+            return $this->render("admin");
+        }else{
+            return $this->render("acc");
+        }
+    }
+
+    public function removeUser(){
+        if(!$this->checkIfAdmin()){
+            return $this->render("acc");
+        }
+
+        $nickname = $_POST["nickname"];
+        $ifDone = $this->userRepository->deleteByNickname($nickname);
+        if($ifDone){
+            return $this->render("admin", ['messeges' => ["User deleted!"]]);
+        }
+        return $this->render("admin", ['messeges' => ["Cannot delete user!"]]);
+    }
+
+    private function checkIfAdmin():bool{
+        $this->checkIfLoggedIn();
+        $userId = $_SESSION["userId"];
+        $user = $this->userRepository->getUserById($userId);
+        if($user->getUserType()==3){
+            return true;
+        }
+        return false;
     }
 }

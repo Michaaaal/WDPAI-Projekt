@@ -158,6 +158,37 @@ class CompetitionPhotoRepository extends \Repository
         );
     }
 
+    public function getCPByTopicId(int $topicId){
+        $stmt = $this->database->connect()->prepare("SELECT * FROM competition_images WHERE topic_id = :topicId ORDER BY likes desc");
+        $stmt->bindParam(':topicId', $topicId);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getCPByTopicIdObjects(int $topicId){
+        $stmt = $this->database->connect()->prepare("SELECT * FROM competition_images WHERE topic_id = :topicId ORDER BY likes desc");
+        $stmt->bindParam(':topicId', $topicId);
+        $stmt->execute();
+
+        $competitionPhotos = [];
+
+        while ($competitionPhoto = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $competitionPhotos[] = new CompetitionPhoto(
+                $competitionPhoto['id_competition_image'],
+                $competitionPhoto['topic_id'],
+                $competitionPhoto['user_id'],
+                $competitionPhoto['description'],
+                $competitionPhoto['img'],
+                $competitionPhoto['likes'],
+                $competitionPhoto['unlikes'],
+                $competitionPhoto['place']
+            );
+        }
+
+        return $competitionPhotos;
+    }
+
     public function addLike(int $idCI){
         $query = "UPDATE competition_images SET likes = likes + 1 WHERE id_competition_image = :id";
 

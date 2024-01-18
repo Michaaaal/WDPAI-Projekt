@@ -1,0 +1,101 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient( rgb(10, 8, 8), rgb(28, 28, 36),  rgb(10, 8, 8));
+
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+
+    border-left: 1px solid #6A6A6A;
+    border-right: 1px solid #6A6A6A;
+    box-sizing: border-box;
+    background-attachment: fixed;
+
+    justify-content: center;
+    align-items: center;
+    color: white;
+
+    overflow-x: hidden; /* Ukryj pasek przewijania poziomego */
+    scroll-snap-type: y mandatory; /* Opcjonalnie: ustaw właściwość przewijania */
+    overscroll-behavior-x: none;
+}
+
+
+.photo-container {
+    text-align: center; /* Wyśrodkowanie tekstu i elementów wewnątrz kontenera */
+    font-family: Inter , sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.IMG {
+    margin-top: 1.5%;
+    border-radius: 3%;
+    max-height: 60vh; /* Maksymalna wysokość obrazka */
+    width: auto; /* Szerokość automatycznie dostosowuje się do wysokości */
+   /* box-shadow: 0px 100px 300px 1px rgba(255, 255, 255, 0.2);*/
+}
+
+.uploadedIMG {
+    margin-bottom: 2vh; /* Odstęp między opisem a przyciskami */
+}
+
+.buttonE {
+    padding: 10px 20px; /* Wypełnienie przycisków */
+    color: #fff; /* Kolor tekstu na przyciskach */
+    border: none; /* Brak obramowania */
+    border-radius: 5px; /* Zaokrąglone rogi */
+    font-size: 16px; /* Wielkość czcionki */
+    cursor: pointer; /* Kursor wskazujący */
+    margin: 0 10px; /* Odstępy między przyciskami */
+    transition: background-color 0.3s ease; /* Animacja zmiany koloru tła */
+}
+
+.buttonE:hover {
+    opacity: 0.9; /* Lekkie przyciemnienie przycisków po najechaniu */
+}
+
+.buttonE:active {
+    transform: scale(0.98); /* Lekkie zmniejszenie przycisków po kliknięciu */
+}
+
+/* Styl dla przycisku Like */
+#like {
+    width: 8vw;
+    background-color: #4CAF50; /* Zielone tło */
+    box-shadow: 0 5px #367c39; /* Cień pod przyciskiem */
+}
+
+/* Styl dla przycisku Dislike */
+#dislike {
+    width: 8vw;
+    background-color: #f44336; /* Czerwone tło */
+    box-shadow: 0 5px #d73833; /* Cień pod przyciskiem */
+    margin-bottom: 1vh;
+}
+
+.buttons-container {
+    display: flex; /* Ustawia elementy (formularze) w poziomie */
+    justify-content: center; /* Wyśrodkowuje elementy poziomo */
+}
+
+.button-form {
+    margin: 0 5px; /* Dodaje marginesy pomiędzy formularzami */
+}
+
+.rainbow {
+    background: linear-gradient(45deg, #ff0000, #ff8000, #ffff00, #00ff00, #0000ff, #8000ff, #ff00ff);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+#AllImagesEval{
+    margin-top: 32vh;
+    margin-right: 10vw;
+    font-size: 90px;
+
+}

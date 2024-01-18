@@ -50,7 +50,7 @@
           document.getElementById('leaderboardButton').classList.add('active');
         }
 
-        if (currentUrl.includes('acc') || currentUrl.includes('add')) {
+        if (currentUrl.includes('acc') || currentUrl.includes('add') || currentUrl.includes('login')) {
           document.getElementById('accButton').classList.add('active');
         }
       </script>

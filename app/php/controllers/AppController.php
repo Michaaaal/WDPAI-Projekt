@@ -27,4 +27,11 @@ class AppController{
 
         print $output;
     }
+
+    protected function checkIfLoggedIn(){
+        if (!isset($_SESSION['isLoggedIn']) || $_SESSION['isLoggedIn'] !== true) {
+            $this->render('login');
+            exit;
+        }
+    }
 }

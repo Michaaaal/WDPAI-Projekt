@@ -21,8 +21,40 @@ class UserRepository extends Repository
             $user['password_hash'],
             $user['nickname'],
             $user['phone_number'],
-            $user['id_user']
+            $user['id_user'],
+            $user['user_type_id']
         );
+    }
+
+    public function getByNickname(string $nick): ? User
+    {
+        $stmt = $this->database->connect()->prepare("SELECT * FROM users WHERE nickname= :nick");
+        $stmt->bindParam(':email',$nick );
+        $stmt->execute();
+
+        $user= $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if($user == false){
+            return null;
+        }
+
+        return new User(
+            $user['email'],
+            $user['password_hash'],
+            $user['nickname'],
+            $user['phone_number'],
+            $user['id_user'],
+            $user['user_type_id']
+        );
+    }
+
+    public function deleteByNickname(string $nick): bool
+    {
+        $stmt = $this->database->connect()->prepare("DELETE FROM users WHERE nickname = :nick");
+        $stmt->bindParam(':nick', $nick);
+        $success = $stmt->execute();
+
+        return $success;
     }
 
     public function getUserById(string $id): ? User
@@ -42,14 +74,15 @@ class UserRepository extends Repository
             $user['password_hash'],
             $user['nickname'],
             $user['phone_number'],
-            $user['id_user']
+            $user['id_user'],
+            $user['user_type_id']
         );
     }
 
     public function addUser(User $user){
 
-        $query = "INSERT INTO users (gallery_images_id ,user_type_id ,email, password_hash, phone_number, nickname, country_id) 
-                  VALUES (null ,1 ,:email, :password, :phone_number, :nickname, 171)";
+        $query = "INSERT INTO users (user_type_id ,email, password_hash, phone_number, nickname, country_id) 
+                  VALUES (1 ,:email, :password, :phone_number, :nickname, 171)";
 
         $stmt = $this->database->connect()->prepare($query);
 

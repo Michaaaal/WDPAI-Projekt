@@ -20,13 +20,9 @@ class CompetitionController extends AppController{
     const UPLOAD_DIR = '/../iuploadsTMP/';
 
     public function addCP(){
+        $this->checkIfLoggedIn();
         if($this->isPost() && is_uploaded_file($_FILES['file']['tmp_name']) && $this->validate($_FILES['file']))
         {
-            if (!isset($_SESSION['isLoggedIn']) || $_SESSION['isLoggedIn'] !== true) {
-                header('Location: login.php');
-                exit;
-            }
-
 
             $userId = $_SESSION['userId'];
             $userRepository = new UserRepository();
@@ -59,6 +55,26 @@ class CompetitionController extends AppController{
         $this->render("acc",["messages" => $this->messages]);
     }
 
+    public function evaluateCI() {
+        $this->checkIfLoggedIn();
+
+        $idCI = intval($_POST['photoId']);
+        $ifLike = $_POST['like'] === 'true';
+
+        $userId = $_SESSION["userId"];
+        $repo = new CompetitionPhotoRepository();
+
+        $repo->addToEvaluated($userId, $idCI);
+
+        if ($ifLike) {
+            $repo->addLike($idCI);
+        } else {
+            $repo->addDislike($idCI);
+        }
+
+        $image = $repo->getCPbyUserNotEvaluatedSingle($userId);
+        $this->render('evaluate', ['image' => [$image]]);
+    }
 
     public function displayCompetitionImagesUploaded()
     {
@@ -89,6 +105,35 @@ class CompetitionController extends AppController{
         }
     }
 
+    public function displayCompetitionImagesForTopic()
+    {
+        $topicId = $_SESSION['topicId'];
+
+        $competitionPhotoRepository = new CompetitionPhotoRepository();
+        $allCPbyUserId = $competitionPhotoRepository->getCPByTopicIdObjects($topicId);
+        if(count($allCPbyUserId)==0){
+            return;
+        }
+
+        foreach ($allCPbyUserId as $competitionPhoto){
+            $imagePath = "app/iuploadsTMP/";
+            if ($competitionPhoto != null ) {
+                $description = $competitionPhoto->getImage();
+                if (!empty($description)) {
+                    $imagePath .= $description;
+                } else {
+                    $imagePath .= 'No-Photo.jpg';
+                }
+            } else {
+                continue;
+            }
+
+            echo '<div class="imgPlusDesc"><img class="uploadedIMG" src="' . $imagePath . '" alt="Competition Image">';
+            echo '<p class="uploadedIMG">' . $competitionPhoto->getDescription() . '</p></div>';
+        }
+    }
+
+
     public function displayCompetitionImagesGallery()
     {
         $userId = $_SESSION['userId'];
@@ -118,25 +163,50 @@ class CompetitionController extends AppController{
         }
     }
 
-    public function evaluateCI() {
-        $idCI = intval($_POST['photoId']);
-        $ifLike = $_POST['like'] === 'true';
+    public function search(){
+        $this->checkIfLoggedIn();
 
-        $userId = $_SESSION["userId"];
-        $repo = new CompetitionPhotoRepository();
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+        if($contentType === "application/json"){
+            $content = trim(file_get_contents("php://input"));
+            $decoded = json_decode($content, true);
 
-        $repo->addToEvaluated($userId, $idCI);
+            $topicRepository = new TopicRepository();
 
-        if ($ifLike) {
-            $repo->addLike($idCI);
-        } else {
-            $repo->addDislike($idCI);
+            // Pobieranie tematów
+            $topics = $topicRepository->getTopicNameLike($decoded['search']);
+
+            // Zapisywanie nazw tematów do pliku
+            $this->saveTopicNamesToFile($topics);
+
+            header('Content-Type: application/json');
+            http_response_code(200);
+            echo json_encode($topics);
         }
-
-        $image = $repo->getCPbyUserNotEvaluatedSingle($userId);
-        $this->render('evaluate', ['image' => [$image]]);
     }
 
+    public function competitionImages() {
+        $this->checkIfLoggedIn();
+
+        $topicId = $_GET['topicId'] ?? null;
+        if ($topicId) {
+            $repoCI = new CompetitionPhotoRepository();
+            $cis = $repoCI->getCPByTopicId($topicId);
+            header('Content-Type: application/json');
+            http_response_code(200);
+            echo json_encode($cis);
+        }
+    }
+    private function saveTopicNamesToFile($topics) {
+        $fileName = 'topics.txt'; // Nazwa pliku do zapisu
+        $file = fopen($fileName, 'a'); // Otwarcie pliku w trybie dopisywania
+
+        foreach ($topics as $topic) {
+            fwrite($file, $topic['topic'] . PHP_EOL); // Zapis nazwy tematu do pliku
+        }
+
+        fclose($file); // Zamknięcie pliku
+    }
 
     private function validate(array $file):bool {
 

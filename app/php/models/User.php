@@ -10,6 +10,8 @@ class User
     private $name;
     private $phoneNumber;
 
+    private $userType;
+
     /**
      * @param $id
      * @param $email
@@ -17,14 +19,33 @@ class User
      * @param $name
      * @param $phoneNumber
      */
-    public function __construct($email, $password, $name, $phoneNumber,$id)
+    public function __construct($email, $password, $name, $phoneNumber,$id, $userType)
     {
         $this->email = $email;
         $this->password = $password;
         $this->name = $name;
         $this->phoneNumber = $phoneNumber;
         $this->id = $id;
+        $this->userType = $userType;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getUserType()
+    {
+        return $this->userType;
+    }
+
+    /**
+     * @param mixed $userType
+     */
+    public function setUserType($userType): void
+    {
+        $this->userType = $userType;
+    }
+
+
 
     /**
      * @param $id

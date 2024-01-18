@@ -47,4 +47,15 @@ class TopicRepository extends \Repository
 
     }
 
+    public function getTopicNameLike(string $topicName): array
+    {
+        $topicName = '%'.strtolower($topicName).'%';
+
+        $stmt = $this->database->connect()->prepare("SELECT * FROM topics WHERE LOWER(topic) LIKE :topicName");
+        $stmt->bindParam(':topicName', $topicName);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }

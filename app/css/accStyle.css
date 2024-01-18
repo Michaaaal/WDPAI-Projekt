@@ -71,6 +71,10 @@ body {
     width: 60%;
 }
 
+.description{
+    background-color: #333441;
+}
+
 #submitButton{
     margin-top: 4%;
     margin-bottom: 4%;
@@ -88,12 +92,11 @@ body {
     margin-left: 11.5%;
 }
 
-.uploadedImg {
+.uploadedIMG {
     margin-left: 11.5%;
     width: 75%;
     height: auto;
 }
-
 
 
 
